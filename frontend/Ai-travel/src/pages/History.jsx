@@ -238,13 +238,13 @@ const TripModal = ({ trip, onClose, shareLink, onShare }) => {
                 </div>
                 <div className="p-5 space-y-4">
                   {day.morning && (
-                    <div className="space-y-1"><span className="text-blue-400 font-bold block text-sm">Morning: {day.morning.title}</span><p className="text-gray-300 text-xs">{day.morning.activities?.join(", ")}</p></div>
+                    <div className="space-y-1"><span className="text-blue-400 font-bold block text-sm">Morning: {day.morning.title}</span><p className="text-gray-300 text-xs">{Array.isArray(day.morning.activities) ? day.morning.activities.join(", ") : day.morning.activities}</p></div>
                   )}
                   {day.afternoon && (
-                    <div className="space-y-1"><span className="text-purple-400 font-bold block text-sm">Afternoon: {day.afternoon.title}</span><p className="text-gray-300 text-xs">{day.afternoon.activities?.join(", ")}</p></div>
+                    <div className="space-y-1"><span className="text-purple-400 font-bold block text-sm">Afternoon: {day.afternoon.title}</span><p className="text-gray-300 text-xs">{Array.isArray(day.afternoon.activities) ? day.afternoon.activities.join(", ") : day.afternoon.activities}</p></div>
                   )}
                   {day.evening && (
-                    <div className="space-y-1"><span className="text-cyan-400 font-bold block text-sm">Evening: {day.evening.title}</span><p className="text-gray-300 text-xs">{day.evening.activities?.join(", ")}</p></div>
+                    <div className="space-y-1"><span className="text-cyan-400 font-bold block text-sm">Evening: {day.evening.title}</span><p className="text-gray-300 text-xs">{Array.isArray(day.evening.activities) ? day.evening.activities.join(", ") : day.evening.activities}</p></div>
                   )}
                 </div>
               </div>

@@ -245,7 +245,7 @@ const SharedItinerary = () => {
             <div>
               <span className="text-[10px] text-gray-400 uppercase block">Interests</span>
               <span className="font-bold text-xs truncate block max-w-[120px]">
-                {itinerary.interests?.join(", ") || "Sightseeing"}
+                {Array.isArray(itinerary.interests) ? itinerary.interests.join(", ") : itinerary.interests || "Sightseeing"}
               </span>
             </div>
           </div>
@@ -280,12 +280,17 @@ const SharedItinerary = () => {
                           <span className="text-white text-sm font-semibold print:text-black">{day.morning.title}</span>
                         </h4>
                         <ul className="pl-5 space-y-1.5">
-                          {day.morning.activities?.map((act, aIdx) => (
+                          {Array.isArray(day.morning.activities) ? day.morning.activities.map((act, aIdx) => (
                             <li key={aIdx} className="text-sm text-gray-300 flex items-start gap-2 print:text-black">
                               <span className="text-green-500 mt-1 shrink-0">✓</span>
                               <span>{act}</span>
                             </li>
-                          ))}
+                          )) : (
+                            <li className="text-sm text-gray-300 flex items-start gap-2 print:text-black">
+                              <span className="text-green-500 mt-1 shrink-0">✓</span>
+                              <span>{day.morning.activities}</span>
+                            </li>
+                          )}
                           {day.morning.food && (
                             <li className="text-sm text-gray-300 flex items-start gap-2 print:text-black">
                               <span className="text-green-500 mt-1 shrink-0">✓</span>
@@ -304,12 +309,17 @@ const SharedItinerary = () => {
                           <span className="text-white text-sm font-semibold print:text-black">{day.afternoon.title}</span>
                         </h4>
                         <ul className="pl-5 space-y-1.5">
-                          {day.afternoon.activities?.map((act, aIdx) => (
+                          {Array.isArray(day.afternoon.activities) ? day.afternoon.activities.map((act, aIdx) => (
                             <li key={aIdx} className="text-sm text-gray-300 flex items-start gap-2 print:text-black">
                               <span className="text-green-500 mt-1 shrink-0">✓</span>
                               <span>{act}</span>
                             </li>
-                          ))}
+                          )) : (
+                            <li className="text-sm text-gray-300 flex items-start gap-2 print:text-black">
+                              <span className="text-green-500 mt-1 shrink-0">✓</span>
+                              <span>{day.afternoon.activities}</span>
+                            </li>
+                          )}
                           {day.afternoon.food && (
                             <li className="text-sm text-gray-300 flex items-start gap-2 print:text-black">
                               <span className="text-green-500 mt-1 shrink-0">✓</span>
@@ -328,12 +338,17 @@ const SharedItinerary = () => {
                           <span className="text-white text-sm font-semibold print:text-black">{day.evening.title}</span>
                         </h4>
                         <ul className="pl-5 space-y-1.5">
-                          {day.evening.activities?.map((act, aIdx) => (
+                          {Array.isArray(day.evening.activities) ? day.evening.activities.map((act, aIdx) => (
                             <li key={aIdx} className="text-sm text-gray-300 flex items-start gap-2 print:text-black">
                               <span className="text-green-500 mt-1 shrink-0">✓</span>
                               <span>{act}</span>
                             </li>
-                          ))}
+                          )) : (
+                            <li className="text-sm text-gray-300 flex items-start gap-2 print:text-black">
+                              <span className="text-green-500 mt-1 shrink-0">✓</span>
+                              <span>{day.evening.activities}</span>
+                            </li>
+                          )}
                           {day.evening.food && (
                             <li className="text-sm text-gray-300 flex items-start gap-2 print:text-black">
                               <span className="text-green-500 mt-1 shrink-0">✓</span>

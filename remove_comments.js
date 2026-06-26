@@ -1,18 +1,26 @@
 const fs = require('fs');
 const path = require('path');
-const strip = require('strip-comments');
 
 const DIRS_TO_CHECK = [
     path.join(__dirname, 'backend'),
-    path.join(__dirname, 'frontend')
+    path.join(__dirname, 'frontend', 'Ai-travel', 'src')
 ];
 
 const IGNORE_DIRS = ['node_modules', '.git', 'dist', 'build'];
 
+function stripComments(code) {
+  return code.replace(/("([^"\\]|\\.)*"|'([^'\\]|\\.)*'|`([^`\\]|\\.)*`|\/\*[\s\S]*?\*\/)|(\/\/.*)/g, (match, g1) => {
+    if (g1 && !g1.startsWith('/*')) {
+      return g1;
+    }
+    return '';
+  });
+}
+
 function removeCommentsInFile(filePath) {
     try {
         const content = fs.readFileSync(filePath, 'utf8');
-        const stripped = strip(content);
+        const stripped = stripComments(content);
         if (content !== stripped) {
             fs.writeFileSync(filePath, stripped, 'utf8');
             console.log(`Cleaned comments from: ${filePath}`);
@@ -33,7 +41,7 @@ function processDirectory(dirPath) {
 
         if (stat.isDirectory()) {
             processDirectory(fullPath);
-        } else if (stat.isFile() && /\.(js|jsx|mjs|cjs)$/i.test(fullPath)) {
+        } else if (stat.isFile() && /\.(js|jsx|css)$/i.test(fullPath)) {
             removeCommentsInFile(fullPath);
         }
     }
