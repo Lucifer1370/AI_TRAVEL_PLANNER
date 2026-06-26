@@ -15,7 +15,7 @@ import Profile from "./pages/Profile";
 import SharedItinerary from "./pages/SharedItinerary";
 import NotFound from "./pages/NotFound";
 
-// Route Guard for Protected Pages
+
 const ProtectedRoute = ({ children }) => {
   const { token, loading } = useContext(AuthContext);
 
@@ -34,7 +34,7 @@ const ProtectedRoute = ({ children }) => {
   return children;
 };
 
-// Route Guard for Guest Pages (Login / Register)
+
 const GuestRoute = ({ children }) => {
   const { token, loading } = useContext(AuthContext);
 
@@ -68,7 +68,7 @@ function AppRoutes() {
         }}
       />
       <Routes>
-        {/* Pages with Navbar and Footer */}
+        {}
         <Route element={<MainLayout />}>
           <Route path="/" element={<Home />} />
           
@@ -108,11 +108,11 @@ function AppRoutes() {
             }
           />
 
-          {/* Public Sharing Link */}
+          {}
           <Route path="/share/:shareId" element={<SharedItinerary />} />
         </Route>
 
-        {/* Pages without Navbar and Footer */}
+        {}
         <Route
           path="/login"
           element={
@@ -130,7 +130,7 @@ function AppRoutes() {
           }
         />
 
-        {/* Fallback */}
+        {}
         <Route path="*" element={<NotFound />} />
       </Routes>
     </>

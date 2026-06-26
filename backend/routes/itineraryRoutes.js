@@ -12,7 +12,7 @@ const {
     generateManualTrip,
 } = require("../controllers/itineraryController");
 
-// Protected Routes
+
 router.post("/generate", auth, generateManualTrip);
 
 router.get("/history", auth, getHistory);
@@ -23,7 +23,7 @@ router.delete("/:id", auth, deleteItinerary);
 
 router.post("/:id/share", auth, shareItinerary);
 
-// Public Route
+
 router.get("/share/:shareId", getSharedItinerary);
 
 module.exports = router;

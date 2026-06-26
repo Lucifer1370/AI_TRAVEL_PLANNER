@@ -2,20 +2,17 @@ const User = require("../models/userModel");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
-// Register
+
 const register = async (req, res) => {
     try {
         const { name, email, password } = req.body;
 
-        // Validation
         if (!name || !email || !password) {
             return res.status(400).json({
                 success: false,
                 message: "All fields are required",
             });
         }
-
-        // Check existing user
         const existingUser = await User.findOne({ email });
 
         if (existingUser) {
@@ -25,10 +22,9 @@ const register = async (req, res) => {
             });
         }
 
-        // Hash password
+        
         const hashedPassword = await bcrypt.hash(password, 10);
 
-        // Save user
         const user = await User.create({
             name,
             email,
@@ -50,13 +46,10 @@ const register = async (req, res) => {
 };
 
 
-
-// Login
 const login = async (req, res) => {
     try {
         const { email, password } = req.body;
 
-        // Validation
         if (!email || !password) {
             return res.status(400).json({
                 success: false,
@@ -64,7 +57,6 @@ const login = async (req, res) => {
             });
         }
 
-        // Check User
         const user = await User.findOne({ email });
 
         if (!user) {
@@ -74,7 +66,6 @@ const login = async (req, res) => {
             });
         }
 
-        // Compare Password
         const isMatch = await bcrypt.compare(password, user.password);
 
         if (!isMatch) {
@@ -84,7 +75,6 @@ const login = async (req, res) => {
             });
         }
 
-        // Generate JWT
         const token = jwt.sign(
             { id: user._id },
             process.env.JWT_SECRET,

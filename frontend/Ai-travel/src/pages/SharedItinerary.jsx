@@ -93,13 +93,13 @@ const SharedItinerary = () => {
 
   return (
     <div className="min-h-screen bg-[#030712] text-white px-4 md:px-6 py-12 relative overflow-hidden print:p-0 print:bg-white print:text-black">
-      {/* Glow overlays - hidden on print */}
+      {}
       <div className="absolute top-20 left-10 h-96 w-96 rounded-full bg-blue-600/10 blur-[150px] -z-10 print:hidden"></div>
       <div className="absolute bottom-20 right-10 h-96 w-96 rounded-full bg-purple-600/10 blur-[150px] -z-10 print:hidden"></div>
 
       <div className="max-w-6xl mx-auto space-y-8">
         
-        {/* Header banner - Sleek Gradient without image */}
+        {}
         <div className="relative rounded-3xl overflow-hidden border border-white/10 shadow-2xl bg-gradient-to-br from-blue-900/40 via-slate-900/60 to-purple-900/40 p-8 md:p-10 backdrop-blur-xl">
           <div className="flex flex-col">
             <span className="text-blue-400 font-bold uppercase tracking-wider text-sm">Shared Travel Itinerary</span>
@@ -112,10 +112,10 @@ const SharedItinerary = () => {
           </div>
         </div>
 
-        {/* Booking Details Card - if generated from a document */}
+        {}
         {itinerary.passengerName && itinerary.passengerName !== "N/A" && (
           <div className="bg-gradient-to-r from-blue-950/40 via-slate-900/60 to-indigo-955/40 border border-white/10 rounded-3xl p-6 md:p-8 backdrop-blur-xl relative overflow-hidden shadow-xl print:border-gray-300 print:bg-white print:text-black">
-            {/* Boarding pass accent stripe */}
+            {}
             <div className="absolute top-0 left-0 w-2.5 h-full bg-gradient-to-b from-blue-500 to-purple-500 print:hidden"></div>
             
             <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 border-b border-white/10 pb-4 mb-6 print:border-gray-300">
@@ -194,7 +194,7 @@ const SharedItinerary = () => {
           </div>
         )}
 
-        {/* Parameters Overview Cards */}
+        {}
         <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
           <div className="bg-white/5 border border-white/10 rounded-2xl p-4 backdrop-blur-xl flex items-center gap-3 print:border-gray-300 print:bg-white print:text-black">
             <div className="p-3 rounded-xl bg-blue-600/10 border border-blue-500/20 text-blue-400 print:bg-gray-100">
@@ -251,10 +251,10 @@ const SharedItinerary = () => {
           </div>
         </div>
 
-        {/* Content Layout Grid */}
+        {}
         <div className="grid lg:grid-cols-3 gap-8 items-start print:grid-cols-1">
           
-          {/* Left Column: Timeline */}
+          {}
           <div className="lg:col-span-2 space-y-8 print:space-y-4">
             
             <h2 className="text-3xl font-extrabold flex items-center gap-2 border-b border-white/10 pb-2 print:text-black">
@@ -264,7 +264,7 @@ const SharedItinerary = () => {
             {itinerary.itinerary && itinerary.itinerary.length > 0 ? (
               itinerary.itinerary.map((day, idx) => (
                 <div key={idx} className="bg-white/5 border border-white/10 rounded-3xl overflow-hidden backdrop-blur-xl shadow-lg print:border-gray-300 print:bg-white print:text-black">
-                  {/* Day Header - Sleek Text without Image */}
+                  {}
                   <div className="bg-gradient-to-r from-blue-600/20 via-purple-600/10 to-transparent p-5 border-b border-white/10 flex items-center justify-between">
                     <h3 className="text-2xl font-extrabold text-white flex items-center gap-2">
                       <span className="text-blue-400">Day {day.dayNumber || idx + 1}</span>
@@ -272,7 +272,7 @@ const SharedItinerary = () => {
                   </div>
 
                   <div className="p-6 md:p-8 space-y-6 print:p-4">
-                    {/* Morning */}
+                    {}
                     {day.morning && (
                       <div className="space-y-2">
                         <h4 className="text-blue-400 font-bold flex items-center gap-1.5 text-base print:text-blue-600">
@@ -296,7 +296,7 @@ const SharedItinerary = () => {
                       </div>
                     )}
 
-                    {/* Afternoon */}
+                    {}
                     {day.afternoon && (
                       <div className="space-y-2 pt-4 border-t border-white/5 print:border-gray-200">
                         <h4 className="text-purple-400 font-bold flex items-center gap-1.5 text-base print:text-purple-600">
@@ -320,7 +320,7 @@ const SharedItinerary = () => {
                       </div>
                     )}
 
-                    {/* Evening */}
+                    {}
                     {day.evening && (
                       <div className="space-y-2 pt-4 border-t border-white/5 print:border-gray-200">
                         <h4 className="text-cyan-400 font-bold flex items-center gap-1.5 text-base print:text-cyan-600">
@@ -352,9 +352,9 @@ const SharedItinerary = () => {
 
           </div>
 
-          {/* Right Column: Widgets */}
+          {}
           <div className="space-y-8 print:break-before-page print:space-y-4">
-            {/* Budget Breakdown */}
+            {}
             {itinerary.budgetBreakdown && (
               <div className="bg-white/5 border border-white/10 rounded-3xl p-6 backdrop-blur-xl print:border-gray-300 print:bg-white print:text-black">
                 <h3 className="text-lg font-bold border-b border-white/10 pb-3 mb-4 flex items-center gap-2">
@@ -415,7 +415,7 @@ const SharedItinerary = () => {
           </div>
         </div>
 
-        {/* Print Bar CTA */}
+        {}
         <div className="flex justify-center items-center bg-white/5 border border-white/10 p-5 rounded-3xl backdrop-blur-xl print:hidden">
           <button
             onClick={handlePrint}

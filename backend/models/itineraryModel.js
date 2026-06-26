@@ -11,7 +11,7 @@ const itinerarySchema = new mongoose.Schema(
             default: null,
         },
 
-        // Original Booking Fields (Optional)
+        
         passengerName: String,
         flightNumber: String,
         airline: String,
@@ -23,7 +23,7 @@ const itinerarySchema = new mongoose.Schema(
         seat: String,
         pnr: String,
 
-        // Premium Planner Fields
+        
         destination: String,
         durationDays: Number,
         travelersCount: Number,

@@ -143,7 +143,6 @@ const generateManualTrip = async (req, res) => {
             });
         }
 
-        // Call AI planner
         const aiResponse = await generateManualItinerary({
             destination,
             days,
@@ -152,7 +151,6 @@ const generateManualTrip = async (req, res) => {
             interests,
         });
 
-        // Parse JSON
         const jsonMatch = aiResponse.match(/\{[\s\S]*\}/);
         if (!jsonMatch) {
             throw new Error("Failed to generate a valid itinerary JSON. Please try again.");
@@ -160,7 +158,6 @@ const generateManualTrip = async (req, res) => {
         const cleaned = jsonMatch[0].trim();
         const itineraryData = JSON.parse(cleaned);
 
-        // Save to DB with explicit field overrides to prevent LLM hallucinations
         const itinerary = await Itinerary.create({
             user: req.user.id,
             ...itineraryData,

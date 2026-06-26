@@ -1,49 +1,38 @@
 const extractText = require("../services/extractText");
 const { generateItinerary } = require("../services/groqService");
 const Itinerary = require("../models/itineraryModel");
+
 const uploadFile = async (req, res) => {
     try {
+        if (!req.file) {
+            return res.status(400).json({ success: false, message: "Please upload a file." });
+        }
 
-        // Extract text
         const extractedText = await extractText(req.file);
-
-        // AI Response
         const aiResponse = await generateItinerary(extractedText);
 
-        // Extract JSON block from response
         const jsonMatch = aiResponse.match(/\{[\s\S]*\}/);
         if (!jsonMatch) {
-            throw new Error("Failed to generate a valid itinerary JSON. Try uploading the document again.");
+            throw new Error("Could not parse itinerary from the uploaded ticket. Please check the document format.");
         }
-        const cleaned = jsonMatch[0].trim();
-
-        // Convert to Object
-        const itineraryData = JSON.parse(cleaned);
-
-        // Save to MongoDB
+        
+        const itineraryData = JSON.parse(jsonMatch[0].trim());
         const itinerary = await Itinerary.create({
-
             user: req.user.id,
-
             ...itineraryData
-
         });
 
         res.status(201).json({
             success: true,
-            message: "Itinerary Generated Successfully",
+            message: "Itinerary generated successfully",
             itinerary,
         });
-
     } catch (error) {
-
-        console.error(error);
-
+        console.error("Upload controller error:", error);
         res.status(500).json({
             success: false,
             message: error.message,
         });
-
     }
 };
 

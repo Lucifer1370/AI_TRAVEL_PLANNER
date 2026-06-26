@@ -12,10 +12,10 @@ export const AuthProvider = ({ children }) => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // If we have a token, we consider the user logged in. 
-    // In a real production app we would fetch the user profile from /api/auth/me,
-    // but since we are keeping it clean and simple for a MERN assignment, 
-    // we can parse/load the stored user details from localStorage.
+    
+    
+    
+    
     const storedUser = localStorage.getItem("user");
     if (token && storedUser) {
       setUser(JSON.parse(storedUser));

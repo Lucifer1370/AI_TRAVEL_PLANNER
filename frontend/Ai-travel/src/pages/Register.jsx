@@ -20,12 +20,12 @@ const Register = () => {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-[#030712] text-white px-6 relative overflow-hidden">
-      {/* Background glow effects */}
+      {}
       <div className="absolute top-1/4 left-1/4 h-80 w-80 rounded-full bg-blue-600/10 blur-[130px]"></div>
       <div className="absolute bottom-1/4 right-1/4 h-80 w-80 rounded-full bg-purple-600/10 blur-[130px]"></div>
 
       <div className="w-full max-w-md relative z-10">
-        {/* Brand Logo */}
+        {}
         <div className="flex flex-col items-center mb-8">
           <Link to="/" className="flex items-center gap-2 text-3xl font-extrabold text-white">
             <FaPlaneDeparture className="text-blue-500 text-4xl animate-bounce" />
@@ -36,12 +36,12 @@ const Register = () => {
           <p className="text-gray-400 mt-2 text-sm text-center">Your ultimate AI-powered travel planner</p>
         </div>
 
-        {/* Card */}
+        {}
         <div className="bg-white/5 border border-white/10 rounded-3xl p-8 backdrop-blur-xl shadow-2xl">
           <h2 className="text-2xl font-bold text-center mb-6">Create Account</h2>
 
           <form onSubmit={handleSubmit} className="space-y-5">
-            {/* Full Name */}
+            {}
             <div>
               <label className="text-sm font-semibold text-gray-300 block mb-2">Full Name</label>
               <div className="flex items-center rounded-xl border border-white/10 bg-black/40 px-4 focus-within:border-blue-500/50 transition">
@@ -57,7 +57,7 @@ const Register = () => {
               </div>
             </div>
 
-            {/* Email Address */}
+            {}
             <div>
               <label className="text-sm font-semibold text-gray-300 block mb-2">Email Address</label>
               <div className="flex items-center rounded-xl border border-white/10 bg-black/40 px-4 focus-within:border-cyan-500/50 transition">
@@ -73,7 +73,7 @@ const Register = () => {
               </div>
             </div>
 
-            {/* Password */}
+            {}
             <div>
               <label className="text-sm font-semibold text-gray-300 block mb-2">Password</label>
               <div className="flex items-center rounded-xl border border-white/10 bg-black/40 px-4 focus-within:border-purple-500/50 transition">
@@ -89,7 +89,7 @@ const Register = () => {
               </div>
             </div>
 
-            {/* Submit Button */}
+            {}
             <button
               type="submit"
               disabled={loading}
@@ -103,7 +103,7 @@ const Register = () => {
             </button>
           </form>
 
-          {/* Bottom Link */}
+          {}
           <p className="mt-6 text-center text-sm text-gray-400">
             Already have an account?{" "}
             <Link to="/login" className="text-blue-400 hover:text-blue-300 font-semibold transition">

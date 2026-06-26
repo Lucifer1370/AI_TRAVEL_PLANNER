@@ -25,7 +25,7 @@ const Profile = () => {
 
   return (
     <div className="min-h-screen bg-[#030712] text-white px-6 py-16 relative overflow-hidden">
-      {/* Background glow effects */}
+      {}
       <div className="absolute top-20 left-10 h-80 w-80 rounded-full bg-blue-600/10 blur-[130px] -z-10"></div>
       <div className="absolute bottom-20 right-10 h-80 w-80 rounded-full bg-purple-600/10 blur-[130px] -z-10"></div>
 
@@ -33,7 +33,7 @@ const Profile = () => {
         <h1 className="text-4xl font-extrabold mb-10 text-center md:text-left">Account Profile</h1>
 
         <div className="bg-white/5 border border-white/10 rounded-3xl p-8 backdrop-blur-xl shadow-2xl space-y-8">
-          {/* User Meta */}
+          {}
           <div className="flex items-center gap-6 pb-6 border-b border-white/10">
             <div className="w-20 h-20 rounded-full bg-gradient-to-r from-blue-600 to-purple-600 flex items-center justify-center text-3xl font-bold text-white shadow-xl">
               {user.name.split(" ").map((n) => n[0]).join("").toUpperCase()}
@@ -44,9 +44,9 @@ const Profile = () => {
             </div>
           </div>
 
-          {/* Details */}
+          {}
           <div className="space-y-6">
-            {/* Full Name */}
+            {}
             <div className="flex items-center gap-4 text-sm">
               <div className="p-3 rounded-xl bg-blue-600/10 border border-blue-500/20 text-blue-400">
                 <FaUser />
@@ -57,7 +57,7 @@ const Profile = () => {
               </div>
             </div>
 
-            {/* Email */}
+            {}
             <div className="flex items-center gap-4 text-sm">
               <div className="p-3 rounded-xl bg-purple-600/10 border border-purple-500/20 text-purple-400">
                 <FaEnvelope />
@@ -68,7 +68,7 @@ const Profile = () => {
               </div>
             </div>
 
-            {/* Account Stats */}
+            {}
             <div className="flex items-center gap-4 text-sm">
               <div className="p-3 rounded-xl bg-cyan-600/10 border border-cyan-500/20 text-cyan-400">
                 <FaPlaneDeparture />
@@ -80,7 +80,7 @@ const Profile = () => {
             </div>
           </div>
 
-          {/* Actions */}
+          {}
           <div className="pt-6 border-t border-white/10 flex justify-between items-center">
             <button
               onClick={logout}

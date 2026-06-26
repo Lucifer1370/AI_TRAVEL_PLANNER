@@ -7,7 +7,7 @@ const Navbar = () => {
   const { user, token, logout } = useContext(AuthContext);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  // Helper to get initials
+  
   const getInitials = (name) => {
     if (!name) return "U";
     return name
@@ -28,7 +28,7 @@ const Navbar = () => {
   return (
     <nav className="bg-black/70 backdrop-blur-md border-b border-gray-800 sticky top-0 z-50">
       <div className="max-w-7xl mx-auto flex items-center justify-between px-6 py-4">
-        {/* Logo */}
+        {}
         <Link to="/" onClick={closeMobileMenu} className="flex items-center gap-2 text-2xl font-bold text-white">
           <FaPlaneDeparture className="text-blue-500 text-3xl" />
           <span className="bg-gradient-to-r from-blue-400 via-cyan-400 to-purple-500 bg-clip-text text-transparent">
@@ -36,7 +36,7 @@ const Navbar = () => {
           </span>
         </Link>
 
-        {/* Desktop Navigation Menu */}
+        {}
         <div className="hidden md:flex items-center gap-8 text-gray-300">
           <NavLink
             to="/"
@@ -79,11 +79,11 @@ const Navbar = () => {
           )}
         </div>
 
-        {/* Desktop Authentication Button/Profile */}
+        {}
         <div className="hidden md:flex items-center gap-4">
           {token && user ? (
             <div className="flex items-center gap-4">
-              {/* User Avatar Circle */}
+              {}
               <Link to="/profile" className="flex items-center gap-2">
                 <div className="w-9 h-9 rounded-full bg-gradient-to-r from-blue-600 to-purple-600 flex items-center justify-center font-bold text-white shadow-lg text-sm">
                   {getInitials(user.name)}
@@ -93,7 +93,7 @@ const Navbar = () => {
                 </span>
               </Link>
 
-              {/* Logout Button */}
+              {}
               <button
                 onClick={() => {
                   logout();
@@ -123,7 +123,7 @@ const Navbar = () => {
           )}
         </div>
 
-        {/* Hamburger Icon for Mobile */}
+        {}
         <div className="flex items-center md:hidden">
           <button
             onClick={toggleMobileMenu}
@@ -135,7 +135,7 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* Mobile Collapsible Dropdown Menu */}
+      {}
       <div
         className={`md:hidden bg-black/95 backdrop-blur-lg border-t border-gray-800 transition-all duration-300 ease-in-out overflow-hidden ${
           isMobileMenuOpen ? "max-h-[450px]" : "max-h-0"

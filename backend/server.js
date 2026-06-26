@@ -19,7 +19,7 @@ app.use("/api/upload", uploadRoutes);
 app.use("/api/itinerary", itineraryRoutes);
 app.use("/api/auth", authRoutes);
 
-// Serve frontend static files in production
+
 if (process.env.NODE_ENV === "production") {
     app.use(express.static(path.join(__dirname, "../frontend/Ai-travel/dist")));
 

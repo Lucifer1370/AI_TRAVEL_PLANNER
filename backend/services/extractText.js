@@ -8,13 +8,13 @@ const extractText = async (file) => {
     }
     const ext = file.originalname.split(".").pop().toLowerCase();
 
-    // ---------- PDF ----------
+    
     if (ext === "pdf") {
         try {
-            // Use pdfjs-dist legacy dynamically (since it is ESM)
+            
             const pdfjsLib = await import("pdfjs-dist/legacy/build/pdf.mjs");
             const workerPath = path.resolve(__dirname, "../node_modules/pdfjs-dist/legacy/build/pdf.worker.mjs");
-            // Normalize path to file:// protocol for ESM loader on Windows
+            
             const workerUrl = "file:///" + workerPath.replace(/\\/g, "/");
             pdfjsLib.GlobalWorkerOptions.workerSrc = workerUrl;
 
@@ -40,7 +40,7 @@ const extractText = async (file) => {
         }
     }
 
-    // ---------- Image ----------
+    
     if (["jpg", "jpeg", "png"].includes(ext)) {
         try {
             const result = await Tesseract.recognize(

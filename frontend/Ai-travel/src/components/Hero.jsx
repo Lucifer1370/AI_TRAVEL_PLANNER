@@ -19,13 +19,13 @@ const Hero = () => {
 
     return (
         <section className="relative overflow-hidden">
-            {/* Background Glow */}
+            {}
             <div className="absolute left-10 top-20 h-72 w-72 rounded-full bg-blue-600/20 blur-[120px]"></div>
             <div className="absolute right-10 bottom-20 h-72 w-72 rounded-full bg-purple-600/20 blur-[120px]"></div>
 
             <div className="relative z-10 max-w-7xl mx-auto px-6 py-24 grid lg:grid-cols-2 gap-16 items-center">
 
-                {/* Left Side */}
+                {}
                 <div>
 
                     <span className="inline-flex items-center rounded-full border border-blue-500/20 bg-blue-500/10 px-4 py-2 text-sm text-blue-300">
@@ -79,7 +79,7 @@ const Hero = () => {
 
                 </div>
 
-                {/* Right Side */}
+                {}
                 <div className="rounded-3xl border border-white/10 bg-white/5 backdrop-blur-xl p-8 shadow-2xl">
 
                     <h2 className="text-3xl font-bold mb-8">
