@@ -6,6 +6,10 @@ const itinerarySchema = new mongoose.Schema(
             type: mongoose.Schema.Types.ObjectId,
             ref: "User",
         },
+        transportType: {
+            type: String,
+            default: "Flight",
+        },
         shareId: {
             type: String,
             default: null,

@@ -8,8 +8,10 @@ const uploadFile = async (req, res) => {
             return res.status(400).json({ success: false, message: "Please upload a file." });
         }
 
+        const { days, budget, travelers } = req.body;
         const extractedText = await extractText(req.file);
-        const aiResponse = await generateItinerary(extractedText);
+        
+        const aiResponse = await generateItinerary(extractedText, { days, budget, travelers });
 
         const jsonMatch = aiResponse.match(/\{[\s\S]*\}/);
         if (!jsonMatch) {

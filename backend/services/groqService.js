@@ -4,7 +4,11 @@ const groq = new Groq({
     apiKey: process.env.GROQ_API_KEY,
 });
 
-const generateItinerary = async (text) => {
+const generateItinerary = async (text, preferences = {}) => {
+    const days = preferences.days || 3;
+    const budget = preferences.budget || "Medium";
+    const travelers = preferences.travelers || 1;
+
     const prompt = `
 You are an AI Travel Planner.
 Extract travel details from the booking document below (e.g. flight/hotel ticket), determine the destination/dates/passenger, and automatically generate a detailed day-by-day travel plan, and estimated budgets.
@@ -12,11 +16,17 @@ Extract travel details from the booking document below (e.g. flight/hotel ticket
 Booking details:
 ${text}
 
+User Preferences:
+- Duration: ${days} Days
+- Budget: ${budget}
+- Travelers: ${travelers}
+
 Return ONLY valid JSON matching this exact structure:
 {
   "passengerName": "Name of passenger or N/A",
-  "flightNumber": "Flight number or N/A",
-  "airline": "Airline name or N/A",
+  "flightNumber": "Flight/Train number or N/A",
+  "airline": "Airline/Railway name or N/A",
+  "transportType": "Flight, Train, Bus, or Unknown",
   "departureCity": "Origin city or Home",
   "arrivalCity": "Destination city",
   "departureDate": "Date or TBD",
@@ -26,9 +36,9 @@ Return ONLY valid JSON matching this exact structure:
   "pnr": "PNR code or N/A",
   
   "destination": "Destination name",
-  "durationDays": 5, 
-  "travelersCount": 2, 
-  "budgetLevel": "Low, Medium, or Luxury",
+  "durationDays": ${days}, 
+  "travelersCount": ${travelers}, 
+  "budgetLevel": "${budget}",
   "interests": ["Beach", "Adventure", "Sightseeing"],
   
   "budgetBreakdown": {
@@ -46,26 +56,29 @@ Return ONLY valid JSON matching this exact structure:
       "dayNumber": 1,
       "imageUrl": "landmark",
       "morning": {
-        "title": "Beach walk & local breakfast",
-        "activities": ["Visit local spot for morning walk", "Enjoy authentic breakfast"],
-        "food": "Bebinca, Pav Bhaji, Tea"
+        "title": "Morning activity title",
+        "activities": ["Activity 1", "Activity 2"],
+        "food": "Food suggestion"
       },
       "afternoon": {
-        "title": "Historic Fort exploration",
-        "activities": ["Explore old fort & lighthouse", "Take photographs of the panoramic coastline"],
-        "food": "Local fish curry rice for lunch"
+        "title": "Afternoon activity title",
+        "activities": ["Activity 1", "Activity 2"],
+        "food": "Food suggestion"
       },
       "evening": {
-        "title": "Sunset River Cruise",
-        "activities": ["Enjoy Sunset River Cruise", "Watch traditional cultural dances"],
-        "food": "Sea food dinner at a nice restaurant"
+        "title": "Evening activity title",
+        "activities": ["Activity 1", "Activity 2"],
+        "food": "Food suggestion"
       }
     }
   ]
 }
 
 CRITICAL REQUIREMENT: 
-You must generate a complete itinerary plan for all days (from Day 1 to the calculated duration of the trip). The "itinerary" array MUST contain elements for every single day. For every single day, you must fully populate the "morning", "afternoon", and "evening" sub-objects with titles, activities (array of strings), and food recommendations. Do NOT leave any day empty, and do NOT omit any fields.
+1. You MUST generate a complete itinerary plan for exactly ${days} days based on the User Preferences. Set "durationDays" to ${days}.
+2. The "itinerary" array MUST contain elements for every single day from Day 1 to Day ${days}. 
+3. For every single day, you must fully populate the "morning", "afternoon", and "evening" sub-objects with titles, activities (array of strings), and food recommendations. Do NOT leave any day empty, and do NOT omit any fields.
+4. Calculate "budgetBreakdown" relative to the ${budget} budget for ${travelers} travelers across ${days} days.
 `;
 
     const completion = await groq.chat.completions.create({

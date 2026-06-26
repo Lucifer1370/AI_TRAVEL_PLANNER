@@ -21,8 +21,10 @@ import {
   FaMapMarkedAlt,
   FaCheck,
   FaExclamationTriangle,
-  FaSuitcase,
   FaPrint,
+  FaTimes,
+  FaTrain,
+  FaBus,
 } from "react-icons/fa";
 
 const Dashboard = () => {
@@ -78,17 +80,29 @@ const Dashboard = () => {
       return;
     }
     setFile(selectedFile);
-    uploadAndGenerate(selectedFile);
+    setShowPreferences(true);
   };
 
-  
-  const uploadAndGenerate = async (selectedFile) => {
+  const [showPreferences, setShowPreferences] = useState(false);
+  const [preferences, setPreferences] = useState({
+    days: 3,
+    budget: "Medium",
+    travelers: 1
+  });
+
+  const uploadAndGenerate = async () => {
+    if (!file) return;
+    
+    setShowPreferences(false);
     setLoading(true);
     setUploadProgress(10);
     setLoadingPhase("Uploading booking document...");
 
     const formData = new FormData();
-    formData.append("file", selectedFile);
+    formData.append("file", file);
+    formData.append("days", preferences.days);
+    formData.append("budget", preferences.budget);
+    formData.append("travelers", preferences.travelers);
 
     try {
       const response = await API.post("/upload/upload", formData, {
@@ -254,6 +268,73 @@ const Dashboard = () => {
           </div>
         )}
 
+        {showPreferences && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-6 bg-black/80 backdrop-blur-sm">
+            <div className="w-full max-w-lg bg-[#090d16] border border-white/10 rounded-3xl p-8 space-y-6 shadow-2xl">
+              <div className="flex justify-between items-center border-b border-white/10 pb-4">
+                <h3 className="text-2xl font-bold text-white">Trip Preferences</h3>
+                <button onClick={() => setShowPreferences(false)} className="text-gray-400 hover:text-white transition">
+                  <FaTimes className="text-xl" />
+                </button>
+              </div>
+              
+              <div className="space-y-4">
+                <div>
+                  <label className="block text-sm font-medium text-gray-400 mb-2">How many days?</label>
+                  <input
+                    type="number"
+                    min="1"
+                    max="30"
+                    value={preferences.days}
+                    onChange={(e) => setPreferences({ ...preferences, days: e.target.value })}
+                    className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-blue-500 transition"
+                  />
+                </div>
+                
+                <div>
+                  <label className="block text-sm font-medium text-gray-400 mb-2">Number of travelers?</label>
+                  <input
+                    type="number"
+                    min="1"
+                    max="20"
+                    value={preferences.travelers}
+                    onChange={(e) => setPreferences({ ...preferences, travelers: e.target.value })}
+                    className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-blue-500 transition"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-400 mb-2">Budget Level</label>
+                  <select
+                    value={preferences.budget}
+                    onChange={(e) => setPreferences({ ...preferences, budget: e.target.value })}
+                    className="w-full bg-[#111827] border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-blue-500 transition"
+                  >
+                    <option value="Low">Low / Backpacking</option>
+                    <option value="Medium">Medium / Standard</option>
+                    <option value="Luxury">Luxury / Premium</option>
+                  </select>
+                </div>
+              </div>
+
+              <div className="flex gap-4 pt-4 border-t border-white/10">
+                <button
+                  onClick={() => setShowPreferences(false)}
+                  className="flex-1 px-4 py-3 border border-white/10 rounded-xl text-gray-300 font-semibold hover:bg-white/5 transition"
+                >
+                  Cancel
+                </button>
+                <button
+                  onClick={uploadAndGenerate}
+                  className="flex-1 px-4 py-3 bg-gradient-to-r from-blue-600 to-purple-600 rounded-xl text-white font-bold hover:scale-105 active:scale-95 transition"
+                >
+                  Generate Plan
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
+
         {}
         {itinerary && !loading && (
           <div className="space-y-8 print:space-y-4">
@@ -374,7 +455,9 @@ const Dashboard = () => {
                   )}
                   {(itinerary.airline || itinerary.flightNumber) && (
                     <div>
-                      <span className="text-xs text-gray-400 block uppercase tracking-wider">Flight / Carrier</span>
+                      <span className="text-xs text-gray-400 block uppercase tracking-wider">
+                        {itinerary.transportType === "Train" ? "Train / Carrier" : itinerary.transportType === "Bus" ? "Bus / Carrier" : "Flight / Carrier"}
+                      </span>
                       <span className="font-bold text-white mt-1 block print:text-black">
                         {itinerary.airline && itinerary.airline !== "N/A" ? itinerary.airline : ""} 
                         {itinerary.flightNumber && itinerary.flightNumber !== "N/A" ? ` (${itinerary.flightNumber})` : ""}
@@ -406,7 +489,13 @@ const Dashboard = () => {
                     </div>
                     <div className="flex items-center justify-center px-4 py-2 text-gray-500">
                       <div className="h-0.5 w-12 bg-white/10 relative print:bg-gray-300">
-                        <FaPlane className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rotate-45 text-blue-500 text-sm print:text-blue-700" />
+                        {itinerary.transportType === "Train" ? (
+                          <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-blue-500 text-sm print:text-blue-700">🚂</span>
+                        ) : itinerary.transportType === "Bus" ? (
+                          <span className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-blue-500 text-sm print:text-blue-700">🚌</span>
+                        ) : (
+                          <FaPlane className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rotate-45 text-blue-500 text-sm print:text-blue-700" />
+                        )}
                       </div>
                     </div>
                     <div className="flex-1 sm:text-right">

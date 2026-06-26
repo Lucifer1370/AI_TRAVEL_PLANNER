@@ -4,7 +4,7 @@ import toast from "react-hot-toast";
 import {
   FaPlane, FaCalendarAlt, FaMapMarkerAlt, FaTrashAlt, FaShareAlt,
   FaPlaneDeparture, FaClock, FaUser, FaTicketAlt, FaTimes,
-  FaCopy, FaWallet, FaPrint
+  FaCopy, FaWallet, FaPrint, FaTrain, FaBus
 } from "react-icons/fa";
 
 const History = () => {
@@ -191,12 +191,12 @@ const TripModal = ({ trip, onClose, shareLink, onShare }) => {
               )}
             </div>
 
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-sm">
-              {trip.passengerName && (<div><span className="text-xs text-gray-400 block">Passenger</span><span className="font-bold block mt-1">{trip.passengerName}</span></div>)}
-              {(trip.airline || trip.flightNumber) && (<div><span className="text-xs text-gray-400 block">Flight</span><span className="font-bold block mt-1">{trip.airline} {trip.flightNumber}</span></div>)}
-              {trip.seat && trip.seat !== "N/A" && (<div><span className="text-xs text-gray-400 block">Seat</span><span className="font-bold block mt-1">{trip.seat}</span></div>)}
-              {trip.departureDate && trip.departureDate !== "N/A" && (<div><span className="text-xs text-gray-400 block">Date</span><span className="font-bold block mt-1">{trip.departureDate}</span></div>)}
-            </div>
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-sm">
+                  {trip.passengerName && (<div><span className="text-xs text-gray-400 block">Passenger</span><span className="font-bold block mt-1">{trip.passengerName}</span></div>)}
+                  {(trip.airline || trip.flightNumber) && (<div><span className="text-xs text-gray-400 block">{trip.transportType === "Train" ? "Train / Carrier" : trip.transportType === "Bus" ? "Bus / Carrier" : "Flight / Carrier"}</span><span className="font-bold block mt-1">{trip.airline} {trip.flightNumber}</span></div>)}
+                  {trip.seat && trip.seat !== "N/A" && (<div><span className="text-xs text-gray-400 block">Seat</span><span className="font-bold block mt-1">{trip.seat}</span></div>)}
+                  {trip.departureDate && trip.departureDate !== "N/A" && (<div><span className="text-xs text-gray-400 block">Date</span><span className="font-bold block mt-1">{trip.departureDate}</span></div>)}
+                </div>
           </div>
         )}
 
