@@ -1,0 +1,83 @@
+@import "tailwindcss";
+
+body {
+  background: #030712;
+  color: white;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+::selection {
+  background: #3b82f6;
+  color: white;
+}
+
+@media print {
+  /* Hide interactive header, footer, and utility bars */
+  nav,
+  footer,
+  .print\:hidden {
+    display: none !important;
+  }
+
+  /* Force background colors and typography to be print-friendly */
+  body,
+  html,
+  #root,
+  .min-h-screen {
+    background: #ffffff !important;
+    color: #000000 !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  /* Ensure text in headings and lists is high contrast (black) */
+  h1, h2, h3, h4, h5, h6, p, span, li, ul, div {
+    color: #000000 !important;
+    text-shadow: none !important;
+  }
+
+  /* Layout tweaks for clean print output */
+  .max-w-6xl {
+    max-width: 100% !important;
+    width: 100% !important;
+  }
+
+  /* Keep grid sections rendering side-by-side or stacked cleanly without extra margins */
+  .grid {
+    display: grid !important;
+  }
+
+  /* Avoid splitting day cards across page boundaries if possible */
+  .bg-white\/5 {
+    background: #ffffff !important;
+    border: 1px solid #e5e7eb !important;
+    color: #000000 !important;
+    page-break-inside: avoid;
+    break-inside: avoid;
+    box-shadow: none !important;
+  }
+
+  /* Ensure custom checkmarks print as dark green/black */
+  .text-green-500 {
+    color: #16a34a !important;
+  }
+
+  /* Progress bars or decoration tweaks */
+  .bg-black\/40 {
+    background: #f3f4f6 !important;
+    border: 1px solid #e5e7eb !important;
+  }
+
+  .bg-blue-500, .bg-purple-500, .bg-cyan-500, .bg-yellow-500 {
+    background-color: #3b82f6 !important; /* fallback print color */
+  }
+
+  /* Page margins */
+  @page {
+    margin: 1.5cm;
+    size: auto;
+  }
+}

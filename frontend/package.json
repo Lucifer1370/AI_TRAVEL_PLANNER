@@ -1,0 +1,17 @@
+{
+  "name": "ai-travel-planner-root",
+  "version": "1.0.0",
+  "description": "Root configurations and deploy scripts for AI Travel Planner",
+  "scripts": {
+    "install-backend": "cd backend && npm install",
+    "install-frontend": "cd frontend/Ai-travel && npm install",
+    "build-frontend": "cd frontend/Ai-travel && npm run build",
+    "install-all": "npm run install-backend && npm run install-frontend",
+    "build-all": "npm run build-frontend",
+    "start": "cd backend && npm start",
+    "render-postbuild": "npm run install-all && npm run build-all"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

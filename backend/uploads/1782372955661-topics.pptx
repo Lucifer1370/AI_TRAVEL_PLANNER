@@ -1,0 +1,167 @@
+1. Java Basics for DSA
+
+Variables, Data types (int, long, boolean, String)
+
+Loops (for, while, do-while)
+
+Conditionals (if-else, switch)
+
+Functions/Methods (parameters, return types)
+
+Arrays (1D and 2D)
+
+Basic I/O (Scanner, System.out)
+
+2. Arrays & Strings
+
+Traversal
+
+Searching (Linear Search, Binary Search)
+
+Sorting (Bubble, Selection, Insertion, Merge Sort, Quick Sort)
+
+Prefix sums
+
+Sliding window technique
+
+String manipulation (reversal, palindrome check, substring, etc.)
+
+3. Hashing
+
+HashSet → detecting duplicates
+
+HashMap → counting frequencies
+
+Handling collisions conceptually
+
+Problems:
+
+Contains Duplicate
+
+Two Sum
+
+Find Duplicates
+
+Anagram check
+
+4. Recursion
+
+Basic recursion
+
+Factorial, Fibonacci
+
+Array problems with recursion
+
+Backtracking basics (e.g., N-Queens, Rat in a Maze)
+
+5. Mathematics for Coding
+
+Prime numbers
+
+GCD & LCM
+
+Modular arithmetic
+
+Fast exponentiation
+
+6. Searching
+
+Linear search
+
+Binary search (and on answers)
+
+Search in rotated sorted array
+
+Upper bound / Lower bound
+
+7. Sorting
+
+Bubble, Selection, Insertion sort
+
+Merge Sort
+
+Quick Sort
+
+Counting sort
+
+8. Two Pointers Technique
+
+Pair sum problems
+
+Reverse array in-place
+
+Move zeros
+
+Remove duplicates from sorted array
+
+9. More on Arrays
+
+Kadane’s Algorithm (max subarray sum)
+
+Prefix & suffix arrays
+
+Difference array technique
+
+Subarray problems
+
+10. Strings Advanced
+
+StringBuilder usage
+
+Pattern matching (KMP algorithm)
+
+Longest common prefix
+
+Subsequence vs Substring
+
+11. Stack & Queue
+
+Stack (array and LinkedList implementation)
+
+Queue & Circular queue
+
+Problems like:
+
+Valid Parentheses
+
+Next Greater Element
+
+Sliding Window Maximum
+
+12. Linked List
+
+Singly & doubly linked list
+
+Reversal
+
+Detect cycle (Floyd’s algorithm)
+
+Merge two sorted lists
+
+13. Recursion & Backtracking Advanced
+
+Sudoku solver
+
+N-Queens
+
+Rat in a maze
+
+Word search in grid
+
+14. Trees & Graphs (Basics)
+
+Binary tree traversal (DFS, BFS)
+
+Binary search tree basics
+
+Graph representation (Adjacency List/Matrix)
+
+BFS & DFS on graphs
+
+15. Problem Solving Strategies
+
+Brute force → optimize
+
+Space-time tradeoff
+
+Recognizing patterns in problems
